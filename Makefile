@@ -6,7 +6,7 @@
 #    By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/30 17:35:32 by juanhern          #+#    #+#              #
-#    Updated: 2024/09/06 09:03:45 by juanhern         ###   ########.fr        #
+#    Updated: 2024/09/08 21:22:19 by juanhern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,4 +33,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
