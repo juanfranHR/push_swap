@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pw_sort.c                                          :+:      :+:    :+:   */
+/*   sw_sort_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:04:28 by juanhern          #+#    #+#             */
-/*   Updated: 2024/09/05 14:02:57 by juanhern         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:18:29 by juanhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
-void	pw_sort_3(t_list **stack_a)
+void	sw_sort_3(t_list **stack_a)
 {
 	int	max;
 
 	max = get_max_stack(stack_a);
 	if (*(int *)(*stack_a)->content == max)
-		rotate(stack_a, 'a');
+		sw_rotate(stack_a, 'a', 1);
 	else if (*(int *)((*stack_a)->next)->content == max)
-		reverse_rotate(stack_a, 'a');
+		sw_reverse_rotate(stack_a, 'a', 1);
 	if (*(int *)(*stack_a)->content != max - 2)
-		swap(stack_a, 'a');
+		sw_swap(stack_a, 'a', 1);
 }
 
-void	pw_sort_4_5(t_list **stack_a, t_list **stack_b)
+void	sw_sort_4_5(t_list **stack_a, t_list **stack_b)
 {
 	while (ft_lstsize(*stack_b) != 2)
 	{
 		if (*(int *)(*stack_a)->content == 0
 			|| *(int *)(*stack_a)->content == 1)
-			push(stack_a, stack_b, 'b');
+			sw_push(stack_a, stack_b, 'b', 1);
 		else
-			rotate(stack_a, 'a');
+			sw_rotate(stack_a, 'a', 1);
 	}
 	if (*(int *)(*stack_b)->content < *(int *)((*stack_b)->next)->content)
-		swap(stack_b, 'b');
+		sw_swap(stack_b, 'b', 1);
 	if (ft_lstsize(*stack_a) == 3)
-		pw_sort_3(stack_a);
+		sw_sort_3(stack_a);
 	else if (*(int *)(*stack_a)->content > *(int *)((*stack_a)->next)->content)
-		swap(stack_a, 'a');
+		sw_swap(stack_a, 'a', 1);
 	while (*stack_b)
-		push(stack_b, stack_a, 'a');
+		sw_push(stack_b, stack_a, 'a', 1);
 }
 
-void	pw_sort_stack_a(t_list **stack_a, t_list **stack_b, int digits)
+void	sw_sort_stack_a(t_list **stack_a, t_list **stack_b, int digits)
 {
 	int	counter;
 	int	size_a;
@@ -55,14 +55,14 @@ void	pw_sort_stack_a(t_list **stack_a, t_list **stack_b, int digits)
 	while (counter < size_a && !is_sorted(stack_a))
 	{
 		if ((((*(int *)(*stack_a)->content) >> digits) & 1) == 0)
-			push(stack_a, stack_b, 'b');
+			sw_push(stack_a, stack_b, 'b', 1);
 		else
-			rotate(stack_a, 'a');
+			sw_rotate(stack_a, 'a', 1);
 		counter++;
 	}
 }
 
-void	pw_sort_stack_b(t_list **stack_a, t_list **stack_b, int digits)
+void	sw_sort_stack_b(t_list **stack_a, t_list **stack_b, int digits)
 {
 	int	counter;
 	int	size_b;
@@ -72,14 +72,14 @@ void	pw_sort_stack_b(t_list **stack_a, t_list **stack_b, int digits)
 	while (counter < size_b && !is_sorted(stack_a))
 	{
 		if ((((*(int *)(*stack_b)->content) >> digits) & 1) == 0)
-			rotate(stack_b, 'b');
+			sw_rotate(stack_b, 'b', 1);
 		else
-			push(stack_b, stack_a, 'a');
+			sw_push(stack_b, stack_a, 'a', 1);
 		counter++;
 	}
 }
 
-void	pw_sort(t_list **stack_a, t_list **stack_b)
+void	sw_sort(t_list **stack_a, t_list **stack_b)
 {
 	int	max;
 	int	digits;
@@ -88,15 +88,15 @@ void	pw_sort(t_list **stack_a, t_list **stack_b)
 	max = get_digits(stack_a);
 	while (digits < max)
 	{
-		pw_sort_stack_a(stack_a, stack_b, digits);
-		pw_sort_stack_b(stack_a, stack_b, digits + 1);
+		sw_sort_stack_a(stack_a, stack_b, digits);
+		sw_sort_stack_b(stack_a, stack_b, digits + 1);
 		if (is_sorted(stack_a))
 		{
 			while (*stack_b)
-				push(stack_b, stack_a, 'a');
+				sw_push(stack_b, stack_a, 'a', 1);
 		}
 		digits++;
 	}
 	while (*stack_b)
-		push(stack_b, stack_a, 'a');
+		sw_push(stack_b, stack_a, 'a', 1);
 }

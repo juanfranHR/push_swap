@@ -1,0 +1,6 @@
+Push-Swap-Tester
+push_swap
+checker
+.vscode
+*.o
+libft.a
