@@ -6,7 +6,7 @@
 #    By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/30 17:35:32 by juanhern          #+#    #+#              #
-#    Updated: 2024/09/19 17:50:49 by juanhern         ###   ########.fr        #
+#    Updated: 2024/10/27 14:04:13 by juanhern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME_BONUS = checker
 LIBFT = ./libft/libft.a
 SRC_FILES = src/main.c src/sw_moves.c src/sw_sort.c src/sw_utils.c src/sw_input_checker.c src/ft_atol.c src/sw_clear_stack.c src/sw_index_stack.c
 
-BONUS_FILES = bonus/sw_checker_bonus.c bonus/sw_moves_bonus.c bonus/sw_sort_bonus.c src/sw_utils.c src/sw_input_checker.c\
+BONUS_FILES = bonus/sw_checker_bonus.c bonus/sw_moves_bonus.c src/sw_utils.c src/sw_input_checker.c\
 src/ft_atol.c src/sw_clear_stack.c src/sw_index_stack.c
 
 OBJS = $(SRC_FILES:.c=.o)
@@ -37,6 +37,7 @@ bonus: $(OBJS_BONUS)
 
 clean:
 	rm -f $(OBJS) 
+	rm -f $(OBJS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)

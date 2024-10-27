@@ -6,7 +6,7 @@
 /*   By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:35:19 by juanhern          #+#    #+#             */
-/*   Updated: 2024/09/06 09:09:13 by juanhern         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:25:16 by juanhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ int		get_max_stack(t_list **stack);
 t_list	*ft_pre_lstlast(t_list *lst);
 void	sw_push(t_list **src, t_list **dest, char stack);
 void	sw_swap(t_list **header, char stack);
+void	sw_double_swap(t_list **header_a, t_list **header_b);
 void	sw_rotate(t_list **src, char stack);
+void	sw_double_rotate(t_list **src_a, t_list **src_b);
 void	sw_reverse_rotate(t_list **src, char stack);
+void	sw_double_reverse_rotate(t_list **src_a, t_list **src_b);
 int		sw_validate_inputs(int argc, char *argv[], t_list **stack_a);
 void	del_content(void *content);
 void	sw_clear_stack(t_list **stack_a);

@@ -6,44 +6,34 @@
 /*   By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 20:37:32 by juanhern          #+#    #+#             */
-/*   Updated: 2024/09/17 20:18:25 by juanhern         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:50:38 by juanhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap_bonus.h"
 
-void	sw_push(t_list **src, t_list **dest, char stack, int print)
+void	sw_push_bonus(t_list **src, t_list **dest)
 {
 	t_list	*tmp_node;
 
 	tmp_node = *src;
 	*src = (*src)->next;
 	ft_lstadd_front(dest, tmp_node);
-	if (stack == 'a' && print == 1)
-		ft_putstr_fd("pa\n", 1);
-	else if (stack == 'b' && print == 1)
-		ft_putstr_fd("pb\n", 1);
 }
 
-void	sw_swap(t_list **header, char stack, int print)
+void	sw_swap_bonus(t_list **src)
 {
 	t_list	*tmp;
 	t_list	*second_node;
 
-	tmp = *header;
-	second_node = (*header)->next;
+	tmp = *src;
+	second_node = (*src)->next;
 	tmp->next = second_node->next;
-	*header = second_node;
-	(*header)->next = tmp;
-	if (stack == 'a' && print == 1)
-		ft_putstr_fd("sa\n", 1);
-	else if (stack == 'b' && print == 1)
-		ft_putstr_fd("sb\n", 1);
-	else if (stack == 's' && print == 1)
-		ft_putstr_fd("ss\n", 1);
+	*src = second_node;
+	(*src)->next = tmp;
 }
 
-void	sw_rotate(t_list **src, char stack, int print)
+void	sw_rotate_bonus(t_list **src)
 {
 	t_list	*tmp_node;
 	t_list	*last_node;
@@ -53,15 +43,9 @@ void	sw_rotate(t_list **src, char stack, int print)
 	last_node = ft_lstlast(*src);
 	tmp_node->next = NULL;
 	last_node->next = tmp_node;
-	if (stack == 'a' && print == 1)
-		ft_putstr_fd("ra\n", 1);
-	else if (stack == 'b' && print == 1)
-		ft_putstr_fd("rb\n", 1);
-	else if (stack == 'r' && print == 1)
-		ft_putstr_fd("rr\n", 1);
 }
 
-void	sw_reverse_rotate(t_list **src, char stack, int print)
+void	sw_reverse_rotate_bonus(t_list **src)
 {
 	t_list	*tmp_node;
 	t_list	*last_node;
@@ -71,10 +55,23 @@ void	sw_reverse_rotate(t_list **src, char stack, int print)
 	last_node->next = *src;
 	*src = last_node;
 	tmp_node->next = NULL;
-	if (stack == 'a' && print == 1)
-		ft_putstr_fd("rra\n", 1);
-	else if (stack == 'b' && print == 1)
-		ft_putstr_fd("rrb\n", 1);
-	else if (stack == 'r' && print == 1)
-		ft_putstr_fd("rrr\n", 1);
+}
+
+void	sw_double_moves_bonus(char *move, t_list **stack_a, t_list **stack_b)
+{
+	if (ft_strnstr(MOVES_SW, move, ft_strlen(MOVES_SW)) == 0)
+	{
+		sw_swap_bonus(stack_a);
+		sw_swap_bonus(stack_b);
+	}
+	else if (ft_strnstr(MOVES_ROT, move, ft_strlen(MOVES_ROT)) == 0)
+	{
+		sw_rotate_bonus(stack_a);
+		sw_rotate_bonus(stack_b);
+	}
+	else if (ft_strnstr(MOVES_RROT, move, ft_strlen(MOVES_RROT)) == 0)
+	{
+		sw_reverse_rotate_bonus(stack_a);
+		sw_reverse_rotate_bonus(stack_b);
+	}
 }

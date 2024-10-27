@@ -6,7 +6,7 @@
 /*   By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:01:19 by juanhern          #+#    #+#             */
-/*   Updated: 2024/09/06 09:04:54 by juanhern         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:58:40 by juanhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	add_index_stack(t_list **indexed_stack, int index)
 void	index_stack(t_list **header)
 {
 	t_list	*indexed_stack;
-	t_list	*primer_nodo;
+	t_list	*first_node;
 	t_list	*node_a;
 	int		index;
 
 	indexed_stack = NULL;
-	primer_nodo = *header;
+	first_node = *header;
 	while (*header)
 	{
 		index = 0;
-		node_a = primer_nodo;
+		node_a = first_node;
 		while (node_a)
 		{
 			if (*(int *)(*header)->content > *(int *)node_a->content)
@@ -45,6 +45,6 @@ void	index_stack(t_list **header)
 		add_index_stack(&indexed_stack, index);
 		*header = (*header)->next;
 	}
-	ft_lstclear(&primer_nodo, del_content);
+	ft_lstclear(&first_node, del_content);
 	*header = indexed_stack;
 }

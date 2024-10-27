@@ -6,7 +6,7 @@
 /*   By: juanhern <juanhern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 20:37:32 by juanhern          #+#    #+#             */
-/*   Updated: 2024/09/06 08:45:25 by juanhern         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:24:40 by juanhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	sw_push(t_list **src, t_list **dest, char stack)
 	*src = (*src)->next;
 	ft_lstadd_front(dest, tmp_node);
 	if (stack == 'a')
-		ft_putstr_fd("pa\n", 1);
+		ft_putendl_fd("pa", STDOUT_FILENO);
 	else
-		ft_putstr_fd("pb\n", 1);
+		ft_putendl_fd("pb", STDOUT_FILENO);
 }
 
 void	sw_swap(t_list **header, char stack)
@@ -36,11 +36,9 @@ void	sw_swap(t_list **header, char stack)
 	*header = second_node;
 	(*header)->next = tmp;
 	if (stack == 'a')
-		ft_putstr_fd("sa\n", 1);
+		ft_putendl_fd("sa", STDOUT_FILENO);
 	else if (stack == 'b')
-		ft_putstr_fd("sb\n", 1);
-	else
-		ft_putstr_fd("ss\n", 1);
+		ft_putendl_fd("sb", STDOUT_FILENO);
 }
 
 void	sw_rotate(t_list **src, char stack)
@@ -54,11 +52,9 @@ void	sw_rotate(t_list **src, char stack)
 	tmp_node->next = NULL;
 	last_node->next = tmp_node;
 	if (stack == 'a')
-		ft_putstr_fd("ra\n", 1);
+		ft_putendl_fd("ra", STDOUT_FILENO);
 	else if (stack == 'b')
-		ft_putstr_fd("rb\n", 1);
-	else
-		ft_putstr_fd("rr\n", 1);
+		ft_putendl_fd("rb", STDOUT_FILENO);
 }
 
 void	sw_reverse_rotate(t_list **src, char stack)
@@ -72,9 +68,7 @@ void	sw_reverse_rotate(t_list **src, char stack)
 	*src = last_node;
 	tmp_node->next = NULL;
 	if (stack == 'a')
-		ft_putstr_fd("rra\n", 1);
+		ft_putendl_fd("rra", STDOUT_FILENO);
 	else if (stack == 'b')
-		ft_putstr_fd("rrb\n", 1);
-	else
-		ft_putstr_fd("rrr\n", 1);
+		ft_putendl_fd("rrb", STDOUT_FILENO);
 }
